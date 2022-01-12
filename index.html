@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<style>
+		div {
+			width: 350px;
+			height: 70px;
+			padding: 10px;
+			border: 1px solid #aaaaaa;
+		}
+		label {
+			background-color: skyblue;
+			border-radius: 2px;
+			font-size: 20px;
+			text-align: center;
+			padding:10px;
+			margin:15px;
+		}
+	</style>
+	<script>
+		function drag(ev) {
+		ev.dataTransfer.setData("text", ev.target.id);
+		}
+
+		function drop(ev) {
+			ev.preventDefault();
+			var data = ev.dataTransfer.getData("text");
+			ev.target.appendChild(document.getElementById(data));
+		}
+	</script>
+</head>
+
+<body>
+	<h1>(a kinda dumb) drag and drop example</h1>
+	<h2>drag and drop the numbers, plus sign, and equals sign to form a math equation then submit</h2>
+	<div ondrop="drop(event)" ondragover="event.preventDefault()"></div>
+	<br>
+	<label id="2" draggable="true" ondragstart="drag(event)">2</label>
+	<label id="3" draggable="true" ondragstart="drag(event)">1</label>
+	<label id="=" draggable="true" ondragstart="drag(event)">=</label>
+	<label id="1" draggable="true" ondragstart="drag(event)">1</label>
+	<label id="+" draggable="true" ondragstart="drag(event)">+</label>
+	<p>hint : &lt;something&gt;&lt;something&gt;&lt;something&gt;=&lt;something&gt;
+	<button onclick="alert(document.querySelector('div').innerText);if(document.querySelector('div').innerText=='1+1=2') alert('yay')">submit ur equation</button>
+</body>
+</html>
